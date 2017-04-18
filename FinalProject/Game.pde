@@ -50,9 +50,6 @@ class Game {
 
     heart = loadImage("heart.png");
 
-
-    heart = loadImage("heart.png");
-
     //initialize the player object
     player = new Player();
   }
@@ -77,9 +74,14 @@ class Game {
           tempEnemy = new Enemy(1400, int(random(90, 220)), 2);
           enemyList.add(tempEnemy);
         }
-
         for (int i =0; i<enemyList.size(); i++) {
           enemyList.get(i).draw();
+        }
+        
+        for(int j = enemyList.size()-1; j>=0; j--){
+          if(enemyList.get(j).x<-200 || enemyList.get(j).isHit){
+               enemyList.remove(j);
+          }
         }
       }
 
