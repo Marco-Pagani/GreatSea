@@ -1,4 +1,4 @@
-
+ //<>// //<>// //<>// //<>// //<>//
 class Projectile extends Entity {
 
   float xa, ya;
@@ -13,8 +13,8 @@ class Projectile extends Entity {
     active = false;
     MOMENT = 15;
     c = 33;
-    oHeight  = radius * 2;
-    oWidth  = radius * 2;
+    oHeight  = radius * 2 - 4;
+    oWidth  = radius * 2 - 4;
   }
 
   Projectile(int moment, color c) {
@@ -29,11 +29,11 @@ class Projectile extends Entity {
 
   void fire(float angle) {
     println(angle);
-    x = player.x + 91; //<>// //<>// //<>//
-    y = player.y + 20; //<>// //<>// //<>//
-    ya = MOMENT * -sin(angle); //<>// //<>// //<>//
-    xa = MOMENT * cos(angle); //<>// //<>// //<>//
-    active = true; //<>// //<>// //<>//
+    x = player.x + 91;
+    y = player.y + 20; 
+    ya = MOMENT * -sin(angle);
+    xa = MOMENT * cos(angle);
+    active = true;
   }
 
   void draw() {

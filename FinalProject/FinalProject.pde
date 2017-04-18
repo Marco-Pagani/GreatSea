@@ -3,26 +3,28 @@
  */
 
 import processing.sound.*;
+boolean debug = false;
 
+public boolean soundOn = false;
 boolean menuActive = true, //switches for game conditions
   gameActive = false, 
   instructions = false, 
-  isHard = false;
-  Menu startScreen;
-  SoundFile theme;
-  Game game;
-  Player player;
+  isHard = false, 
+  playing = false;
+Menu startScreen;
+Sound theme;
+Game game;
+Player player;
 
 PImage instruct;
 
 void setup() {
-  size(1200, 750); //<>// //<>//
+  size(1200, 750);
   //initialize all objects
   startScreen = new Menu();
   game = new Game();
-  theme = new SoundFile(this, "AtSea.mp3");
+  theme = new Sound(this, "sound/AtSea.mp3");
   instruct = loadImage("instructions.png");
-  //theme.loop();
 }
 
 void draw() {
@@ -39,9 +41,10 @@ void mousePressed() {
   } else if (instructions) {
     instructions = false;
     gameActive = true;
+    theme.loop();
   } else {
     player.fireCannon();
-  } //<>// //<>//
+  }
 }
 
 void keyPressed() {
