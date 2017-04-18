@@ -5,9 +5,9 @@ class Projectile extends Entity {
     int radius = 25;
     boolean active;
     int MOMENT;
-    color c;
+    color c;/*
     oHeight  = radius * 2;
-    oWidth  = radius * 2;
+    oWidth  = radius * 2;*/
 
     Projectile() {
         x = -10;

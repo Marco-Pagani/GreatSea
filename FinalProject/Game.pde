@@ -20,7 +20,6 @@ class Game {
     int score = 0;
 
     Enemy test = new Enemy(width + 200, 70, 2);
-    Log log = new Log(2);
 
     Log log;
     
@@ -53,9 +52,6 @@ class Game {
 
             test.draw();
             log.draw();
-         
-        test.draw();
-        log.draw();
         }
         image(waves[0], wavePosA, height - waves[0].height);
         image(waves[1], wavePosB, height - waves[1].height);
@@ -111,12 +107,7 @@ class Game {
         if (!round) {
 
             if ((abs(a.x - b.x) * 2 < (a.oWidth + b.oWidth))
-                    && (abs(a.y - b.y) * 2 < (a.oHeight + b.oHeight))) 
-            println(a.oWidth);
-            if (a.x - a.oWidth < b.x + b.oWidth
-                    && a.x + a.oWidth > b.x
-                    && a.y < b.y + b.oHeight
-                    && a.oHeight + a.y > b.y) {
+                    && (abs(a.y - b.y) * 2 < (a.oHeight + b.oHeight))) {
 
                 a.hit();
                 b.hit();

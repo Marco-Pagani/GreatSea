@@ -95,6 +95,7 @@ class Player extends Entity {
     void checkKey(char key) {
         if (key == 'd') {
             Xacc = 3;
+            println("pressed");
         } else if (key == 'a') {
             Xacc = -3;
         } else if (key == ' ' && y == BASEHEIGHT) {
