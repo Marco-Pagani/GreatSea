@@ -69,10 +69,34 @@ class Game {
 
       if (isHard ==true) {
         log2.draw();
-      } else {
         if (counter>randInt) {
           randInt=int(random(200-randInt2, 400-randInt2));
+          if(randInt2 <180){
+            randInt2 = randInt2 +20;
+          }
+          counter = 0;
+          tempEnemy = new Enemy(1400, int(random(90, 220)), 4);
+          enemyList.add(tempEnemy);
+        }
+        for (int i =0; i<enemyList.size(); i++) {
+          enemyList.get(i).draw();
+        }
+        
+        for(int j = enemyList.size()-1; j>=0; j--){
+          if(enemyList.get(j).x<-200 || enemyList.get(j).isHit){
+              println("hit Bat");
+               enemyList.remove(j);
+          }
+        }
+      } else {
+        //counter just ticks once every cycle. 
+        //The randInt sets the frequency of enemy spawns. i.e. there is a spawn every randInt ticks.
+        if (counter>randInt) {
+          randInt=int(random(200-randInt2, 400-randInt2));
+          //setting randInt to a slightyly random number keeps the enemy spawn distances somewhat random. 
           randInt2 = randInt2 + 30;
+          //randInt2 is used to gradually decrease randInt (i.e. increase speed of spwans)
+          //Increase randInt2 to increase the rate that enemy spawns speed up
           counter = 0;
           tempEnemy = new Enemy(1400, int(random(90, 220)), 2);
           enemyList.add(tempEnemy);
