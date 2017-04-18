@@ -1,8 +1,8 @@
 
 abstract class Entity {
 
-    float x, y;
-    int oHeight, oWidth;
+  float x, y;
+  int oHeight, oWidth;
 
-    abstract void hit();
+  abstract void hit();
 }

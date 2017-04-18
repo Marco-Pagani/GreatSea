@@ -1,13 +1,13 @@
-/* //<>// //<>//
+/* //<>// //<>// //<>//
  This is the main file of the program from which the game runs
  */
 
 import processing.sound.*;
 
-boolean menuActive = true,   //switches for game conditions
-        gameActive = false, 
-        instructions = false,
-        isHard = false;
+boolean menuActive = true, //switches for game conditions
+  gameActive = false, 
+  instructions = false, 
+  isHard = false;
 Menu startScreen;
 SoundFile theme;
 Game game;
@@ -27,16 +27,16 @@ void setup() {
 
 void draw() {
   game.drawGame();
-  if(menuActive)
+  if (menuActive)
     startScreen.displayMenu();
-  else if(instructions)
-    image(instruct,50,50);
+  else if (instructions)
+    image(instruct, 50, 50);
 }
 
 void mousePressed() {
-  if(menuActive){
+  if (menuActive) {
     startScreen.checkPressed();
-  } else if(instructions){
+  } else if (instructions) {
     instructions = false;
     gameActive = true;
   } else {
@@ -44,14 +44,14 @@ void mousePressed() {
   } //<>//
 }
 
-void keyPressed(){
-    if(gameActive){
-      player.checkKey(key);
+void keyPressed() {
+  if (gameActive) {
+    player.checkKey(key);
   }
 }
 
-void keyReleased(){
-    if(gameActive){
-      player.checkRelease(key);
+void keyReleased() {
+  if (gameActive) {
+    player.checkRelease(key);
   }
 }
