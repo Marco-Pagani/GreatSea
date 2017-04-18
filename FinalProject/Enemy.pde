@@ -8,7 +8,17 @@ class Enemy extends Entity {
     Projectile bomb;
     boolean dropped = false;
     PImage enemy;
+    
+    Enemy(){
+       speed = 0;
+       dropped = false;
+       x = 1500;
+       y= 1500;
+       enemy = loadImage("enemy.png");
+               bomb = new Projectile(1, #9B2121);
 
+       
+    }
     Enemy(int x, int y, int speed) {
         enemy = loadImage("enemy.png");
         this.x = x;
@@ -24,8 +34,8 @@ class Enemy extends Entity {
     void calc() {
         x -= speed;
         y += sin(x / 100) / 2;
+        bomb.x = x + 105;
         if (!dropped) {
-            bomb.x = x + 105;
             bomb.y = y + 105;
         }
         if (x - 50 < player.x) {
