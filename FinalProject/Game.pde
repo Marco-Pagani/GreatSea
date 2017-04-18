@@ -20,13 +20,10 @@ class Game {
     int score = 0;
 
     Enemy test = new Enemy(width + 200, 70, 2);
-<<<<<<< HEAD
     Log log = new Log(2);
 
-=======
     Log log;
     
->>>>>>> origin/master
     Game() {
         //load images for the environment
         background[0] = loadImage("bg1.jpg");
@@ -53,15 +50,12 @@ class Game {
         player.draw();
 
         if (gameActive) {
-<<<<<<< HEAD
 
             test.draw();
             log.draw();
-=======
          
         test.draw();
         log.draw();
->>>>>>> origin/master
         }
         image(waves[0], wavePosA, height - waves[0].height);
         image(waves[1], wavePosB, height - waves[1].height);
@@ -115,17 +109,14 @@ class Game {
 
     void collisionCheck(Entity a, Entity b, boolean round) {
         if (!round) {
-<<<<<<< HEAD
 
             if ((abs(a.x - b.x) * 2 < (a.oWidth + b.oWidth))
-                    && (abs(a.y - b.y) * 2 < (a.oHeight + b.oHeight))) {
-=======
+                    && (abs(a.y - b.y) * 2 < (a.oHeight + b.oHeight))) 
             println(a.oWidth);
             if (a.x - a.oWidth < b.x + b.oWidth
                     && a.x + a.oWidth > b.x
                     && a.y < b.y + b.oHeight
                     && a.oHeight + a.y > b.y) {
->>>>>>> origin/master
 
                 a.hit();
                 b.hit();
