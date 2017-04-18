@@ -58,7 +58,8 @@ class Game {
 
         if (gameActive) {  //process game logic only when the game has begun
             collisionCheck(log, player, false);
-            collisionCheck(log, player.cannons[0], false);
+            for(Projectile c : player.cannons)
+            collisionCheck(log, c, false);
             tick();
             drawHud();
         }

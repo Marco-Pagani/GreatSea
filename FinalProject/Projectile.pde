@@ -5,9 +5,7 @@ class Projectile extends Entity {
     int radius = 25;
     boolean active;
     int MOMENT;
-    color c;/*
-    oHeight  = radius * 2;
-    oWidth  = radius * 2;*/
+    color c;
 
     Projectile() {
         x = -10;
@@ -15,6 +13,8 @@ class Projectile extends Entity {
         active = false;
         MOMENT = 15;
         c = 33;
+    oHeight  = radius * 2;
+    oWidth  = radius * 2;
     }
 
     Projectile(int moment, color c) {
@@ -22,6 +22,8 @@ class Projectile extends Entity {
         y = -10;
         active = false;
         MOMENT = moment;
+    oHeight  = radius * 2;
+    oWidth  = radius * 2;
         this.c = c;
     }
 
