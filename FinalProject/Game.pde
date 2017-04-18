@@ -48,8 +48,6 @@ class Game {
     randInt2 = 0;
     enemyList = new ArrayList<Enemy>();
 
-    heart = loadImage("heart.png");
-
 
     heart = loadImage("heart.png");
 
@@ -94,7 +92,19 @@ class Game {
 
 
     if (gameActive) {  //process game logic only when the game has begun
-
+      collisionCheck(player, log1, false, false);
+      collisionCheck(player, log2, false, false);
+      for (Enemy e : enemyList) {
+        for (Projectile c : player.cannons) {
+          collisionCheck(c, e, false, true);
+          collisionCheck(c, e.bomb, true, true);
+        }
+        collisionCheck(player, e.bomb, false, false);
+      }
+      for (Projectile c : player.cannons) {
+        collisionCheck(c, log1, false, true);
+        collisionCheck(c, log2, false, true);
+      }
       tick();
       drawHud();
     }
