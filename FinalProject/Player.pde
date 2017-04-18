@@ -99,6 +99,8 @@ class Player extends Entity {
             Xacc = -3;
         } else if (key == ' ' && y == BASEHEIGHT) {
             Yacc = -7;
+        } else if (key == 'k') {
+            isDead = true;;
         }
     }
 
@@ -116,7 +118,7 @@ class Player extends Entity {
         for (Projectile p : cannons) {
             if (!p.active) {
                 p.fire(cannonAngle);
-                break;
+                break; //<>//
             }
         }
     }
