@@ -8,15 +8,15 @@ boolean menuActive = true, //switches for game conditions
   gameActive = false, 
   instructions = false, 
   isHard = false;
-Menu startScreen;
-SoundFile theme;
-Game game;
-Player player;
+  Menu startScreen;
+  SoundFile theme;
+  Game game;
+  Player player;
 
 PImage instruct;
 
 void setup() {
-  size(1200, 750); //<>//
+  size(1200, 750); //<>// //<>//
   //initialize all objects
   startScreen = new Menu();
   game = new Game();
@@ -41,7 +41,7 @@ void mousePressed() {
     gameActive = true;
   } else {
     player.fireCannon();
-  } //<>//
+  } //<>// //<>//
 }
 
 void keyPressed() {
