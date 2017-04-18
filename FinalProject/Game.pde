@@ -19,21 +19,37 @@ class Game {
 
   int score = 0;
 
-  Enemy test = new Enemy(width + 200, 70, 2);
 
-  Log log;
+    //Enemy test = new Enemy(width + 200, 70, 2);
 
-  Game() {
-    //load images for the environment
-    background[0] = loadImage("bg1.jpg");
-    background[1] = loadImage("bg2.jpg");
-    waves[0] = loadImage("waves.png");
-    waves[1] = loadImage("waves.png");
-    bgPosA = 0;
-    bgPosB = background[0].width;
-    wavePosA = 0;
-    wavePosB = waves[0].width;
-    log = new Log(4);
+    Log log1;
+    Log log2;
+    float counter; //times the game
+    ArrayList<Enemy> enemyList;
+    Enemy tempEnemy;
+    int randInt;
+    int randInt2;
+
+    
+    Game() {
+        //load images for the environment
+        background[0] = loadImage("bg1.jpg");
+        background[1] = loadImage("bg2.jpg");
+        waves[0] = loadImage("waves.png");
+        waves[1] = loadImage("waves.png");
+        bgPosA = 0;
+        bgPosB = background[0].width;
+        wavePosA = 0;
+        wavePosB = waves[0].width;
+        log1 = new Log(4,1200);
+        log2 = new Log(4,1800);
+        counter = 0;
+        randInt = 100;
+        randInt2 = 0;
+        enemyList = new ArrayList<Enemy>();
+          
+        heart = loadImage("heart.png");
+
 
     heart = loadImage("heart.png");
 
@@ -45,16 +61,41 @@ class Game {
     //Do these even if the menu is open
     image(background[0], bgPosA, 0);
     image(background[1], bgPosB, 0);
+player.draw();
 
-    player.draw();
+        if (gameActive) {
+            //test.draw();
+            log1.draw();
+           
+         if(isHard ==true){
+              log2.draw();
+          }
+          else{
+            if(counter>randInt){
+              randInt=int(random(200-randInt2,400-randInt2));
+              randInt2 = randInt2 - 30;
+              counter = 0;
+              tempEnemy = new Enemy(1400,int(random(90,220)),2);
+              enemyList.add(tempEnemy);
+            }
+            
+            for(int i =0; i<enemyList.size();i++){
+              enemyList.get(i).draw();
+            }
+            
+            
+          }
+          
+          counter++;
+          println(counter);
 
-    if (gameActive) {
+        }
+        image(waves[0], wavePosA, height - waves[0].height);
+        image(waves[1], wavePosB, height - waves[1].height);
 
-      test.draw();
-      log.draw();
-    }
-    image(waves[0], wavePosA, height - waves[0].height);
-    image(waves[1], wavePosB, height - waves[1].height);
+        
+
+   
 
     if (gameActive) {  //process game logic only when the game has begun
       collisionCheck(log, player, false, false);
