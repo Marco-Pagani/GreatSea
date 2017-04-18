@@ -20,7 +20,8 @@ class Game {
     int score = 0;
     
     Enemy test = new Enemy(width + 200, 70, 2);
-    Log log = new Log(2);
+    Log log;
+    
     Game() {
         //load images for the environment
         background[0] = loadImage("bg1.jpg");
@@ -31,6 +32,7 @@ class Game {
         bgPosB = background[0].width;
         wavePosA = 0;
         wavePosB = waves[0].width;
+        log = new Log(4);
 
         heart = loadImage("heart.png");
 
@@ -48,8 +50,7 @@ class Game {
         
         
         if (gameActive) {
-          
-        
+         
         test.draw();
         log.draw();
         }
@@ -104,9 +105,11 @@ class Game {
 
     void collisionCheck(Entity a, Entity b, boolean round) {
         if (!round) {
-            
-            if (a.x -a.oWidth < b.x - b.oWidth
-                   ) {
+            println(a.oWidth);
+            if (a.x - a.oWidth < b.x + b.oWidth
+                    && a.x + a.oWidth > b.x
+                    && a.y < b.y + b.oHeight
+                    && a.oHeight + a.y > b.y) {
 
                 a.hit();
                 b.hit();

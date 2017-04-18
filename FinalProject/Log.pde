@@ -8,12 +8,10 @@ This class should include obstacles that must be avoided in the water
 class Log extends Entity{
     float z;
     float speed;
-    float oHeight;
-    float oWidth;
     PImage log;
     Log(float speed){
          log = loadImage("log.png");
-         x =400; 
+         x =1200; 
          y=605;
          z = 0;
          this.speed = speed;
@@ -24,6 +22,9 @@ class Log extends Entity{
       x -=speed;
       z+=.03;
       y = 605 + 10*sin(z);
+      if(x <-200){
+        x=1800;
+      }
     }
     
     void draw(){
