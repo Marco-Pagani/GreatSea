@@ -26,8 +26,8 @@ class Projectile extends Entity{
   
   void fire(float angle){
     println(angle);
-    x = player.Xpos + 91;
-    y = player.Ypos + 20;
+    x = player.x + 91;
+    y = player.y + 20;
     ya = MOMENT * -sin(angle);
     xa = MOMENT * cos(angle);
     active = true;

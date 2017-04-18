@@ -6,7 +6,7 @@ This class should include obstacles that must be avoided in the water
 */
 
 class Log extends Entity{
-    float x, y,z;
+    float z;
     float speed;
     float oHeight;
     float oWidth;

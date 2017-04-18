@@ -5,7 +5,7 @@ This class defines the enemy objects in the game
 
 class Enemy extends Entity{
   
-    float x, y;
+    
     float speed;
     Projectile bomb;
     boolean dropped = false;
@@ -27,7 +27,7 @@ class Enemy extends Entity{
       bomb.x = x+105;
       bomb.y = y+105;
       }
-      if(x-50 < player.Xpos){
+      if(x-50 < player.x){
         drop();
       }
     }

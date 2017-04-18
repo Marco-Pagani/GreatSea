@@ -44,12 +44,15 @@ class Game {
         image(background[1], bgPosB, 0);
 
         player.draw();
+        if (gameActive) {
         test.draw();
         log.draw();
+        }
         image(waves[0], wavePosA, height - waves[0].height);
         image(waves[1], wavePosB, height - waves[1].height);
 
         if (gameActive) {  //process game logic only when the game has begun
+            collisionCheck(player, log, false);
             tick();
             drawHud();
         }
@@ -94,8 +97,9 @@ class Game {
         }
     }
 
-    void CollisionCheck(Entity a, Entity b, boolean round) {
+    void collisionCheck(Entity a, Entity b, boolean round) {
         if (!round) {
+          
             if (a.x < b.x + b.oWidth
                     && a.x + a.oWidth > b.x
                     && a.y < b.y + b.oHeight

@@ -1,5 +1,4 @@
 class Player extends Entity{
-    float Xpos, Ypos;
     float Xacc, Yacc;
     int oWidth, oLength;
     float cannonAngle, wheelAngle;
@@ -20,8 +19,8 @@ class Player extends Entity{
         cannons[i] = new Projectile();
        
       }
-      Xpos = 50;
-      Ypos = BASEHEIGHT;
+      x = 50;
+      y = BASEHEIGHT;
       health = 5;
       oWidth = ship.width;
       oHeight = ship.height;
@@ -32,18 +31,18 @@ class Player extends Entity{
     }
     
     void calcShip(){
-      Xpos += Xacc;
-      Ypos += Yacc;
+      x += Xacc;
+      y += Yacc;
       findAngle();
       wheelAngle += 1;
       if(wheelAngle > 360)
         wheelAngle -= 360;
-      if(Ypos < BASEHEIGHT){
+      if(y < BASEHEIGHT){
         Yacc += 0.15;
       }
-      if(Ypos > BASEHEIGHT){
+      if(y > BASEHEIGHT){
         Yacc = 0;
-        Ypos = BASEHEIGHT;
+        y = BASEHEIGHT;
       }
       if(health < 1)
       isDead = true;
@@ -57,7 +56,7 @@ class Player extends Entity{
       
       calcShip();
        pushMatrix();
-       translate(Xpos,Ypos);
+       translate(x,y);
        image(ship,0,0);
        pushMatrix();
        translate(45,110);
@@ -73,8 +72,8 @@ class Player extends Entity{
     }
     
     void findAngle(){
-        float Xcomp = mouseX - ((Xpos) + 91);
-        float Ycomp = ((Ypos) + 20) - mouseY;
+        float Xcomp = mouseX - ((x) + 91);
+        float Ycomp = ((y) + 20) - mouseY;
         
         cannonAngle = atan2(Ycomp,Xcomp);
         if(cannonAngle < 0)
@@ -98,7 +97,7 @@ class Player extends Entity{
       } else if(key == 'a'){
         Xacc = -3;
       }
-      else if(key == ' ' && Ypos == BASEHEIGHT){
+      else if(key == ' ' && y == BASEHEIGHT){
         Yacc = -7;
       }
     }
