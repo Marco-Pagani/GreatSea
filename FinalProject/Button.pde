@@ -1,6 +1,5 @@
 
 //button class for menus
-
 class Button {
 
     final int WIDTH = 250;
@@ -23,7 +22,8 @@ class Button {
     }
 
     void draw() {
-        stroke(#317111);
+        stroke(
+        #317111);
         strokeWeight(3);
         textSize(TEXT_SIZE);
         textAlign(CENTER);

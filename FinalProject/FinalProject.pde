@@ -1,4 +1,4 @@
-/*
+/* //<>// //<>//
  This is the main file of the program from which the game runs
  */
 
@@ -16,7 +16,7 @@ Player player;
 
 PImage instruct;
 
-void setup() { //<>//
+void setup() {
   size(1200, 750);
   //initialize all objects
   startScreen = new Menu();
@@ -41,7 +41,7 @@ void mousePressed() {
     instructions = false;
     gameActive = true;
   } else {
-    player.fireCannon(); //<>//
+    player.fireCannon();
   }
 }
 

@@ -18,9 +18,10 @@ class Game {
     PImage heart;
 
     int score = 0;
-    
+
     Enemy test = new Enemy(width + 200, 70, 2);
     Log log = new Log(2);
+
     Game() {
         //load images for the environment
         background[0] = loadImage("bg1.jpg");
@@ -44,20 +45,18 @@ class Game {
         image(background[1], bgPosB, 0);
 
         player.draw();
-        
-        
-        
+
         if (gameActive) {
-          
-        
-        test.draw();
-        log.draw();
+
+            test.draw();
+            log.draw();
         }
         image(waves[0], wavePosA, height - waves[0].height);
         image(waves[1], wavePosB, height - waves[1].height);
 
         if (gameActive) {  //process game logic only when the game has begun
             collisionCheck(log, player, false);
+            collisionCheck(log, player.cannons[0], false);
             tick();
             drawHud();
         }
@@ -104,20 +103,20 @@ class Game {
 
     void collisionCheck(Entity a, Entity b, boolean round) {
         if (!round) {
-            
-            if (a.x -a.oWidth < b.x - b.oWidth
-                   ) {
+
+            if ((abs(a.x - b.x) * 2 < (a.oWidth + b.oWidth))
+                    && (abs(a.y - b.y) * 2 < (a.oHeight + b.oHeight))) {
 
                 a.hit();
                 b.hit();
             }
 
         } else {
-          if(sqrt(pow(a.y - b.y,2) + pow(a.x - b.x,2)) < (a.oWidth/2 + b.oWidth/2)){
+            if (sqrt(pow(a.y - b.y, 2) + pow(a.x - b.x, 2)) < (a.oWidth / 2 + b.oWidth / 2)) {
                 a.hit();
                 b.hit();
-          }
+            }
 
-    }
+        }
     }
 }
