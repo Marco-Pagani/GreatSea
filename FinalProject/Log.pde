@@ -9,9 +9,8 @@ class Log extends Entity {
 
     float z;
     float speed;
-    float oHeight;
-    float oWidth;
     PImage log;
+<<<<<<< HEAD
 
     Log(float speed) {
         log = loadImage("log.png");
@@ -27,6 +26,24 @@ class Log extends Entity {
         x -= speed;
         z += .03;
         y = 605 + 10 * sin(z);
+=======
+    Log(float speed){
+         log = loadImage("log.png");
+         x =1200; 
+         y=605;
+         z = 0;
+         this.speed = speed;
+         oHeight = log.height;
+         oWidth = log.width;
+    }
+    void calc(){
+      x -=speed;
+      z+=.03;
+      y = 605 + 10*sin(z);
+      if(x <-200){
+        x=1800;
+      }
+>>>>>>> origin/master
     }
 
     void draw() {
