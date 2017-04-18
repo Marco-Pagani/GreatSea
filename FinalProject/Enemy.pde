@@ -4,6 +4,7 @@
  */
 class Enemy extends Entity {
 
+
     float speed;
     Projectile bomb;
     boolean dropped = false;
@@ -53,9 +54,27 @@ class Enemy extends Entity {
     void drop() {
         dropped = true;
         bomb.active = true;
-    }
-
-    void hit() {
 
     }
+    if (x - 50 < player.x) {
+      drop();
+    }
+  }
+
+  void draw() {
+    calc();
+    image(enemy, x, y);
+    bomb.draw();
+  }
+
+  void drop() {
+    dropped = true;
+    bomb.active = true;
+  }
+
+  void hit() {
+    isHit = true;
+    if (!dropped)
+      bomb.hit();
+  }
 }
