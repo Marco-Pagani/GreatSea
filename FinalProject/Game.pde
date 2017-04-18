@@ -1,4 +1,4 @@
-/* //<>// //<>//
+/* //<>// //<>// //<>//
  This class manages all the game logic and progression
  Hello
  */
@@ -69,7 +69,7 @@ class Game {
       } else {
         if (counter>randInt) {
           randInt=int(random(200-randInt2, 400-randInt2));
-          randInt2 = randInt2 - 30;
+          randInt2 = randInt2 + 30;
           counter = 0;
           tempEnemy = new Enemy(1400, int(random(90, 220)), 2);
           enemyList.add(tempEnemy);
@@ -80,13 +80,14 @@ class Game {
         
         for(int j = enemyList.size()-1; j>=0; j--){
           if(enemyList.get(j).x<-200 || enemyList.get(j).isHit){
+              println("hit Bat");
                enemyList.remove(j);
           }
         }
       }
 
       counter++;
-      println(counter);
+      //println(counter);
     }
     image(waves[0], wavePosA, height - waves[0].height);
     image(waves[1], wavePosB, height - waves[1].height);
@@ -101,6 +102,7 @@ class Game {
       for (Enemy e : enemyList) {
         for (Projectile c : player.cannons) {
           collisionCheck(c, e, false, true);
+          if(e.bomb.active)
           collisionCheck(c, e.bomb, true, true);
         }
         collisionCheck(player, e.bomb, false, false);

@@ -29,11 +29,11 @@ class Projectile extends Entity {
 
   void fire(float angle) {
     println(angle);
-    x = player.x + 91; //<>// //<>//
-    y = player.y + 20; //<>// //<>//
-    ya = MOMENT * -sin(angle); //<>// //<>//
-    xa = MOMENT * cos(angle); //<>// //<>//
-    active = true; //<>// //<>//
+    x = player.x + 91; //<>// //<>// //<>//
+    y = player.y + 20; //<>// //<>// //<>//
+    ya = MOMENT * -sin(angle); //<>// //<>// //<>//
+    xa = MOMENT * cos(angle); //<>// //<>// //<>//
+    active = true; //<>// //<>// //<>//
   }
 
   void draw() {
@@ -58,6 +58,6 @@ class Projectile extends Entity {
     ya = 0;
     x = -10;
     y = -10;
-    println("hit!");
+    //println("hit!");
   }
 }

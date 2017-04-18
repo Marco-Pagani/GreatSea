@@ -18,16 +18,17 @@ class Enemy extends Entity {
     y= 1500;
     enemy = loadImage("enemy.png");
     bomb = new Projectile(1, #9B2121);
+    oWidth = enemy.width;
+    oHeight = enemy.height;
   }
   Enemy(int x, int y, int speed) {
     enemy = loadImage("enemy.png");
     this.x = x;
     this.y = y;
     this.speed = speed;
-    bomb = new Projectile(1, #9B2121
-
-
-      );
+    bomb = new Projectile(1, #9B2121);
+    oWidth = enemy.width;
+    oHeight = enemy.height;
   }
 
   void calc() {
