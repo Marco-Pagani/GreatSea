@@ -13,7 +13,7 @@ class Log extends Entity{
     PImage log;
     Log(float speed){
          log = loadImage("log.png");
-         x =1200; 
+         x =400; 
          y=605;
          z = 0;
          this.speed = speed;
