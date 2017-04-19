@@ -135,12 +135,11 @@ class Game {
         }
         collisionCheck(player, e.bomb, false, false);
       }
-      if (!isHard) {
         for (Projectile c : player.cannons) {
           collisionCheck(c, log1, false, true);
           collisionCheck(c, log2, false, true);
         }
-      }
+      
       tick();
       drawHud();
     }

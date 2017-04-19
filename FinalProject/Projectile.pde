@@ -57,7 +57,7 @@ class Projectile extends Entity {
     xa = 0;
     ya = 0;
     x = -10;
-    y = -10;
+    y = height;
     //println("hit!");
   }
 }
