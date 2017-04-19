@@ -41,8 +41,8 @@ class Game {
     bgPosB = background[0].width;
     wavePosA = 0;
     wavePosB = waves[0].width;
-    log1 = new Log(4, 1200);
-    log2 = new Log(4, 1800);
+    log1 = new Log(4.4, 1200);
+    log2 = new Log(5.5, 1800);
     counter = 0;
     randInt = 100;
     randInt2 = 0;
@@ -178,7 +178,7 @@ class Game {
   void drawDebug() {
     String data = "PLAYER\nX: " + player.x + "\nY: " + player.y + 
       "\nAngle: " + player.cannonAngle + "\nWheel: " + player.wheelAngle;
-    data += "\n\nHard Mode: " + isHard;
+    data += "\n\nHard Mode: " + isHard + "\nSpawn Counter: " + counter;
     textFont(code, 15);
     text(data, 10, 70);
 
