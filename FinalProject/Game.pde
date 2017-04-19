@@ -18,7 +18,7 @@ class Game {
   PImage heart;
 
   int score = 0;
-
+  PFont code = createFont("hack.ttf", 12);
 
   //Enemy test = new Enemy(width + 200, 70, 2);
 
@@ -71,7 +71,7 @@ class Game {
         log2.draw();
         if (counter>randInt) {
           randInt=int(random(200-randInt2, 400-randInt2));
-          if(randInt2 <180){
+          if (randInt2 <180) {
             randInt2 = randInt2 +20;
           }
           counter = 0;
@@ -81,11 +81,10 @@ class Game {
         for (int i =0; i<enemyList.size(); i++) {
           enemyList.get(i).draw();
         }
-        
-        for(int j = enemyList.size()-1; j>=0; j--){
-          if(enemyList.get(j).x<-200 || enemyList.get(j).isHit){
-              println("hit Bat");
-               enemyList.remove(j);
+
+        for (int j = enemyList.size()-1; j>=0; j--) {
+          if (enemyList.get(j).x<-200 || enemyList.get(j).isHit) {
+            enemyList.remove(j);
           }
         }
       } else {
@@ -94,7 +93,9 @@ class Game {
         if (counter>randInt) {
           randInt=int(random(200-randInt2, 400-randInt2));
           //setting randInt to a slightyly random number keeps the enemy spawn distances somewhat random. 
+          if (randInt2 <180) {
           randInt2 = randInt2 + 30;
+          }
           //randInt2 is used to gradually decrease randInt (i.e. increase speed of spwans)
           //Increase randInt2 to increase the rate that enemy spawns speed up
           counter = 0;
@@ -107,7 +108,6 @@ class Game {
 
         for (int j = enemyList.size()-1; j>=0; j--) {
           if (enemyList.get(j).x<-200 || enemyList.get(j).isHit) {
-            println("hit Bat");
             enemyList.remove(j);
           }
         }
@@ -135,9 +135,11 @@ class Game {
         }
         collisionCheck(player, e.bomb, false, false);
       }
-      for (Projectile c : player.cannons) {
-        collisionCheck(c, log1, false, true);
-        collisionCheck(c, log2, false, true);
+      if (!isHard) {
+        for (Projectile c : player.cannons) {
+          collisionCheck(c, log1, false, true);
+          collisionCheck(c, log2, false, true);
+        }
       }
       tick();
       drawHud();
@@ -151,6 +153,8 @@ class Game {
       fill(255, 0, 0);
       text("Game Over!\nScore: " + score, width/2, height/2);
     }
+    if (debug)
+      drawDebug();
   }
 
   void drawHud() {
@@ -169,6 +173,17 @@ class Game {
     }
 
     text("Score: " + score, 500, 30);
+  }
+
+  void drawDebug() {
+    String data = "PLAYER\nX: " + player.x + "\nY: " + player.y + 
+      "\nAngle: " + player.cannonAngle + "\nWheel: " + player.wheelAngle;
+    data += "\n\nHard Mode: " + isHard;
+    textFont(code, 15);
+    text(data, 10, 70);
+
+
+    textFont(startScreen.menu[0].butText, 52);
   }
 
   void tick() {
@@ -216,7 +231,7 @@ class Game {
         a.hit();
         b.hit();
         hit.play();
-        if (score){
+        if (score) {
           this.score++;
           point.play();
         }
@@ -226,7 +241,7 @@ class Game {
         a.hit();
         b.hit();
         hit.play();
-        if (score){
+        if (score) {
           this.score++;
           point.play();
         }

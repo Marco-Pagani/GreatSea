@@ -102,7 +102,7 @@ class Player extends Entity {
     } else if (key == 'a') {
       Xacc = -3;
     } else if (key == ' ' && y == BASEHEIGHT) {
-      Yacc = -7;
+      Yacc = -8;
       jump.play();
     } else if (key == 'k') {
       isDead = true;

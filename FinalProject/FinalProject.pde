@@ -1,4 +1,4 @@
-/* //<>// //<>// //<>//
+/*  //<>// //<>// //<>//
  This is the main file of the program from which the game runs
  */
 
