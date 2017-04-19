@@ -12,6 +12,8 @@ class Button {
   color mainColor, hoverColor;
   boolean active = false;
 
+  Sound hover;
+
   Button(String text, int posX, int posY, color mainColor, color hoverColor) {
     this.mainColor = mainColor;
     this.hoverColor = hoverColor;
@@ -19,6 +21,7 @@ class Button {
     this.posY = posY;
     this.text = text;
     active = false;
+    hover = new Sound(FinalProject.this, "sound/hover.wav");
   }
 
   void draw() {
@@ -40,8 +43,11 @@ class Button {
 
   boolean mouseOn() {
     if (mouseX > posX && mouseX < posX + WIDTH && mouseY > posY && mouseY < posY + HEIGHT) {
+      if (!hover.isPlaying)
+        hover.play();
       return true;
     } else {
+      hover.isPlaying = false;
       return false;
     }
   }

@@ -29,7 +29,7 @@ class Game {
   Enemy tempEnemy;
   int randInt;
   int randInt2;
-
+  Sound water, hit, point;
 
   Game() {
     //load images for the environment
@@ -52,6 +52,9 @@ class Game {
 
     //initialize the player object
     player = new Player();
+    water = new Sound(FinalProject.this, "sound/water.wav");
+    hit = new Sound(FinalProject.this, "sound/hit.wav");
+    point = new Sound(FinalProject.this, "sound/point.wav");
   }
 
   void drawGame() {
@@ -101,17 +104,18 @@ class Game {
         for (int i =0; i<enemyList.size(); i++) {
           enemyList.get(i).draw();
         }
-        
-        for(int j = enemyList.size()-1; j>=0; j--){
-          if(enemyList.get(j).x<-200 || enemyList.get(j).isHit){
-              println("hit Bat");
-               enemyList.remove(j);
+
+        for (int j = enemyList.size()-1; j>=0; j--) {
+          if (enemyList.get(j).x<-200 || enemyList.get(j).isHit) {
+            println("hit Bat");
+            enemyList.remove(j);
           }
         }
       }
 
       counter++;
       //println(counter);
+      water.loop();
     }
     image(waves[0], wavePosA, height - waves[0].height);
     image(waves[1], wavePosB, height - waves[1].height);
@@ -126,8 +130,8 @@ class Game {
       for (Enemy e : enemyList) {
         for (Projectile c : player.cannons) {
           collisionCheck(c, e, false, true);
-          if(e.bomb.active)
-          collisionCheck(c, e.bomb, true, true);
+          if (e.bomb.active)
+            collisionCheck(c, e.bomb, true, true);
         }
         collisionCheck(player, e.bomb, false, false);
       }
@@ -139,6 +143,8 @@ class Game {
       drawHud();
     }
     if (player.isDead) {
+      player.Xacc = 0;
+      theme.stop();
       gameActive = false;
       textAlign(CENTER);
       textSize(50);
@@ -187,25 +193,52 @@ class Game {
   }
 
   void collisionCheck(Entity a, Entity b, boolean round, boolean score) {
+    if (a instanceof Projectile && !round) {
+      a.x -= 23;
+      a.y -= 23;
+    }
+    if (b instanceof Projectile && !round) {
+      b.x -= 23;
+      b.y -= 23;
+    }
+    if (debug) {
+      noFill();
+      stroke(3);
+      stroke(#FF0000);
+      rect(a.x, a.y, a.oWidth, a.oHeight);
+      rect(b.x, b.y, b.oWidth, b.oHeight);
+    }
     if (!round) {
-      // println("a: " + a.x + "b: " + b.x);
-      //println("a: " + a.y + "b: " + b.y);
-      //println((a.oWidth + b.oWidth));
-      //println(abs(a.y - b.y) * 2);
-      // println((a.oHeight + b.oHeight));
-      if ((abs(a.x - b.x) * 2 < (a.oWidth + b.oWidth)) && (abs(a.y - b.y) * 2 < (a.oHeight + b.oHeight))) {
+      if (a.x + a.oWidth >= b.x &&
+        b.x + b.oWidth >= a.x &&
+        a.y + a.oHeight >= b.y &&
+        b.y + b.oHeight >= a.y) {
         a.hit();
         b.hit();
-        if (score)
+        hit.play();
+        if (score){
           this.score++;
+          point.play();
+        }
       }
     } else {
       if (sqrt(pow(a.y - b.y, 2) + pow(a.x - b.x, 2)) < (a.oWidth / 2 + b.oWidth / 2)) {
         a.hit();
         b.hit();
-        if (score)
+        hit.play();
+        if (score){
           this.score++;
+          point.play();
+        }
       }
+    }
+    if (a instanceof Projectile && !round) {
+      a.x += 23;
+      a.y += 23;
+    }
+    if (b instanceof Projectile && !round) {
+      b.x += 23;
+      b.y += 23;
     }
   }
 }

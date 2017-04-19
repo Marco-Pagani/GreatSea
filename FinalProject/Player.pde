@@ -1,4 +1,4 @@
-//<>// //<>// //<>// //<>//
+ //<>// //<>// //<>//
 class Player extends Entity {
 
   float Xacc, Yacc;
@@ -12,6 +12,8 @@ class Player extends Entity {
 
   Projectile[] cannons = new Projectile[3];
 
+  Sound fire, lose, jump;
+
   Player() {
     ship = loadImage("ship.png");
     wheel = loadImage("wheel.png");
@@ -24,6 +26,9 @@ class Player extends Entity {
     health = 5;
     oWidth = ship.width;
     oHeight = ship.height;
+    fire = new Sound(FinalProject.this, "sound/cannon.wav");
+    lose = new Sound(FinalProject.this, "sound/lose.mp3");
+    jump = new Sound(FinalProject.this, "sound/splash.wav");
   }
 
   void setHard() {
@@ -98,9 +103,14 @@ class Player extends Entity {
       Xacc = -3;
     } else if (key == ' ' && y == BASEHEIGHT) {
       Yacc = -7;
+      jump.play();
     } else if (key == 'k') {
       isDead = true;
-      ;
+    } else if (key == '\\') {
+      if (!debug)
+        debug = true;
+      else
+        debug = false;
     }
   }
 
@@ -117,8 +127,9 @@ class Player extends Entity {
     for (Projectile p : cannons) {
       if (!p.active) {
         p.fire(cannonAngle);
-        break; //<>//
-      } //<>//
+        fire.play();
+        break;
+      }
     }
   }
 
@@ -126,6 +137,7 @@ class Player extends Entity {
     health--;
     if (health == 0) {
       isDead = true;
+      lose.play();
     }
   }
 }
